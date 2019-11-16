@@ -1,4 +1,4 @@
-package com.github.yws179.bussine.common.error;
+package com.github.yws179.business.common.error;
 
 /**
  * 包装器业务异常类实现

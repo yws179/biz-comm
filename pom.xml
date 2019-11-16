@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.github.yws179</groupId>
-    <artifactId>bussine-common-library</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>bussine-common-library</name>
+    <artifactId>business-common-library</artifactId>
+    <version>0.0.1</version>
+    <name>business-common-library</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -22,6 +22,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>
@@ -36,13 +40,17 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <repositories>
+        <repository>
+            <id>ali</id>
+            <name>ali</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+        <repository>
+            <id>libs-release</id>
+            <name>repo1</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
 
 </project>
