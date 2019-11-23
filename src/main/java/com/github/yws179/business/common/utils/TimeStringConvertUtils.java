@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * 时间汉字描述转阿拉伯数字分钟（支持汉字描述小于100的数值）
  * 如：一个小时十五分钟 ==> 75分钟
- * 如：九十九小时十五分钟和一个半小时五分钟和5小时和4.5分和1.25小时 ==> 6045分钟和95分钟和300分钟和4分和75分钟
+ * 如：九十九小时十五分钟和一个半小时五分钟和5小时和4.5分和1.25小时 ==> 5955.0分钟和95.0分钟和300.0分钟和4.5分钟和75.0分钟
  * @author yws
  * @date 2019/10/18
  */
@@ -67,7 +67,7 @@ public class TimeStringConvertUtils {
             char c = txt.charAt(i);
             if (c == TEN_CN) {
                 if (i == 0) {
-                    num = 10;
+                    num = txt.length() > 1 ? 1 : 10;
                 }
                 continue;
             } else if (c == DECIMAL_DOT) {
@@ -94,7 +94,7 @@ public class TimeStringConvertUtils {
                 float hour = toNum(matcher.group("HOUR"));
                 float minute = toNum(matcher.group("MINUTE"));
                 boolean hasHalf = matcher.group("HALF") != null;
-                int totalMinutes = (int)(hasHalf ? hour * 60 + 30 + minute : hour * 60 + minute);
+                float totalMinutes = hasHalf ? hour * 60 + 30 + minute : hour * 60 + minute;
                 matcher.appendReplacement(result, totalMinutes + "分钟");
             }
             matcher.appendTail(result);
