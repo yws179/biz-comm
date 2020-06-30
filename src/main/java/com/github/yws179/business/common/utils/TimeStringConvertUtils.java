@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
 /**
  * 时间汉字描述转阿拉伯数字分钟（支持汉字描述小于100的数值）
  * 如：一个小时十五分钟 ==> 75分钟
- * 如：九十九小时十五分钟和一个半小时五分钟和5小时和4.5分和1.25小时 ==> 5955.0分钟和95.0分钟和300.0分钟和4.5分钟和75.0分钟
+ * 如：九十九小时十五分钟和一个半小时五分钟和5小时和4.5分和1.25小时 ==> 5955分钟和95分钟和300分钟和4.5分钟和75分钟
  * @author yws
  * @date 2019/10/18
  */
 @Slf4j
 public class TimeStringConvertUtils {
 
-    private final static Pattern PATTERN = Pattern.compile("(?:(?:(?<HOUR>[零壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十俩半.\\d]+)(?:个)?(?<HALF>半)?(?:小时|钟头|刻钟))|(?:(?<MINUTE>[零壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十俩.\\d]+)分钟?))+");
+    private final static Pattern PATTERN = Pattern.compile("(?:(?:(?<HOUR>[零壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十俩半.\\d]+)(?:个)?(?<HALF>半)?(?:小时|钟头|刻钟))|(?:(?<![零壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十两俩\\d]点)(?<MINUTE>[零壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十俩.\\d]+)(?<MINUTEUNIT>分钟?)))+");
 
     private final static char[] NUM_CN = { '零', '一', '二', '三', '四', '五', '六', '七', '八', '九' };
 
@@ -94,8 +94,15 @@ public class TimeStringConvertUtils {
                 float hour = toNum(matcher.group("HOUR"));
                 float minute = toNum(matcher.group("MINUTE"));
                 boolean hasHalf = matcher.group("HALF") != null;
+                String minuteUnit = matcher.group("MINUTEUNIT");
+                minuteUnit = minuteUnit == null ? "分钟" : minuteUnit;
                 float totalMinutes = hasHalf ? hour * 60 + 30 + minute : hour * 60 + minute;
-                matcher.appendReplacement(result, totalMinutes + "分钟");
+                int iTotalMinutes = (int) totalMinutes;
+                if (totalMinutes > iTotalMinutes + 0.0001) {
+                    matcher.appendReplacement(result, totalMinutes + minuteUnit);
+                } else {
+                    matcher.appendReplacement(result, iTotalMinutes + minuteUnit);
+                }
             }
             matcher.appendTail(result);
             return result.toString();
