@@ -12,7 +12,7 @@ repositories {
 2. Add the dependency
 ```text
 dependencies {
-    implementation 'com.github.User:Repo:Tag'
+    implementation 'com.github.yws179:business-common-library:v1.0.0'
 }
 ```
 
