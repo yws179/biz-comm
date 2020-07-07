@@ -5,10 +5,21 @@ package com.github.yws179.business.common.error;
  * @date 2019/04/24
  */
 public enum EmBusinessError implements CommonError {
+    // --------- 请求相关 --------
+    /**
+     * 参数校验失败
+     */
+    PARAM_VALIDATION_ERROR(10000, "param validation error"),
+    /**
+     * 请求地址不存在
+     */
+    RESOURCE_NOT_FOUND(10001, "resource not found"),
 
-    PARAMTER_VALIDATION_ERROR(10000, ""),
-
-    USER_NOT_EXIST(10001, "user not exist")
+    // --------- 用户相关 --------
+    /**
+     * 用户不存在
+     */
+    USER_NOT_EXIST(11001, "user not exist")
 
     ;
 

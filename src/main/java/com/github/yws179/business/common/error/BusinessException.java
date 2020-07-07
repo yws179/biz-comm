@@ -14,8 +14,18 @@ public class BusinessException extends Exception implements CommonError {
         this.commonError = commonError;
     }
 
+    public BusinessException(CommonError commonError, Throwable cause) {
+        super(cause);
+        this.commonError = commonError;
+    }
+
     public BusinessException(CommonError commonError, String errMsg) {
         super();
+        this.commonError = commonError.setErrMsg(errMsg);
+    }
+
+    public BusinessException(CommonError commonError, String errMsg, Throwable cause) {
+        super(cause);
         this.commonError = commonError.setErrMsg(errMsg);
     }
 
