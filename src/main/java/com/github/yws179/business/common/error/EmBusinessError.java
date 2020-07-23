@@ -1,5 +1,7 @@
 package com.github.yws179.business.common.error;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * @author yws
  * @date 2019/04/24
@@ -23,13 +25,25 @@ public enum EmBusinessError implements CommonError {
 
     ;
 
+    private HttpStatus httpStatus;
+
     private int errCode;
 
     private String errMsg;
 
     EmBusinessError(int errCode, String errMsg) {
+        this(HttpStatus.INTERNAL_SERVER_ERROR, errCode, errMsg);
+    }
+
+    EmBusinessError(HttpStatus httpStatus, int errCode, String errMsg) {
+        this.httpStatus = httpStatus;
         this.errCode = errCode;
         this.errMsg = errMsg;
+    }
+
+    @Override
+    public HttpStatus getHttpStatus() {
+        return this.httpStatus;
     }
 
     @Override

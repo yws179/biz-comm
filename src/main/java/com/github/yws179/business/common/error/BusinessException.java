@@ -1,5 +1,7 @@
 package com.github.yws179.business.common.error;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * 包装器业务异常类实现
  * @author yws
@@ -8,6 +10,22 @@ package com.github.yws179.business.common.error;
 public class BusinessException extends Exception implements CommonError {
 
     private CommonError commonError;
+
+    public static BusinessException of(CommonError commonError) {
+        return new BusinessException(commonError);
+    }
+
+    public static BusinessException of(CommonError commonError, Throwable cause) {
+        return new BusinessException(commonError, cause);
+    }
+
+    public static BusinessException of(CommonError commonError, String errMsg) {
+        return new BusinessException(commonError, errMsg);
+    }
+
+    public static BusinessException of(CommonError commonError, String errMsg, Throwable cause) {
+        return new BusinessException(commonError, errMsg, cause);
+    }
 
     public BusinessException(CommonError commonError) {
         super();
@@ -27,6 +45,11 @@ public class BusinessException extends Exception implements CommonError {
     public BusinessException(CommonError commonError, String errMsg, Throwable cause) {
         super(cause);
         this.commonError = commonError.setErrMsg(errMsg);
+    }
+
+    @Override
+    public HttpStatus getHttpStatus() {
+        return this.commonError.getHttpStatus();
     }
 
     @Override
