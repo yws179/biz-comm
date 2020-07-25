@@ -24,7 +24,7 @@ public class FuncTimerAspect {
     public Object timer(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object o = joinPoint.proceed();
-        log.info("{} ===> takes {} ms", joinPoint.getSignature(), System.currentTimeMillis() - startTime);
+        log.info("{} ==> takes {} ms", joinPoint.getSignature(), System.currentTimeMillis() - startTime);
         return o;
     }
 

@@ -7,6 +7,13 @@ import org.springframework.http.HttpStatus;
  * @date 2019/04/24
  */
 public enum EmBusinessError implements CommonError {
+
+    // --------- 未知异常 --------
+    /**
+     * 未知异常
+     */
+    UNKNOWN_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, -1, "unknown error"),
+
     // --------- 请求相关 --------
     /**
      * 参数校验失败
@@ -17,12 +24,6 @@ public enum EmBusinessError implements CommonError {
      */
     RESOURCE_NOT_FOUND(10001, "resource not found"),
 
-    // --------- 用户相关 --------
-    /**
-     * 用户不存在
-     */
-    USER_NOT_EXIST(11001, "user not exist")
-
     ;
 
     private HttpStatus httpStatus;
@@ -32,7 +33,7 @@ public enum EmBusinessError implements CommonError {
     private String errMsg;
 
     EmBusinessError(int errCode, String errMsg) {
-        this(HttpStatus.INTERNAL_SERVER_ERROR, errCode, errMsg);
+        this(HttpStatus.BAD_REQUEST, errCode, errMsg);
     }
 
     EmBusinessError(HttpStatus httpStatus, int errCode, String errMsg) {
