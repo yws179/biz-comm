@@ -8,6 +8,9 @@
     2. 计时器工具
     3. 时间描述话术转阿拉伯数字工具
     4. IP处理工具
+3. [脱敏工具类](https://github.com/yws179/business-common-library/docs/Desensitize%20Utils.md)
+   1. 普通字符串脱敏处理
+   2. Json序列化字段脱敏
 
 ## Usage
 ### Gradle

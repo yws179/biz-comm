@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.github.yws179</groupId>
     <artifactId>business-common-library</artifactId>
-    <version>0.0.1</version>
+    <version>1.3.0</version>
     <name>business-common-library</name>
     <description>Demo project for Spring Boot</description>
 
