@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * 脱敏工具集
- * <a href="https://github.com/yws179/business-common-library/docs/Desensitize%20Utils.md">查看文档</a>
+ * <a href="https://github.com/yws179/business-common-library/blob/master/docs/Desensitize%20Utils.md">查看文档</a>
  * @author weisen.yan
  * @date 2021/7/23
  */

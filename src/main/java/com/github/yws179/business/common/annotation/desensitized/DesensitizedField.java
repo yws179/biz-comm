@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 /**
  * 敏感字段注解
  * 用于标记Json序列化时，需要进行脱敏处理的字段
- * <a href="https://github.com/yws179/business-common-library/docs/Desensitize%20Utils.md">查看文档</a>
+ * <a href="https://github.com/yws179/business-common-library/blob/master/docs/Desensitize%20Utils.md">查看文档</a>
  * @author weisen.yan
  * @date 2021/7/23
  */
